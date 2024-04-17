@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Clean.Architecture.Web.Models.EmployeeViewModel>
+
+<h2>Zaměstnanci</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Jméno</th>
+            <th>Příjmení</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+            </tr>
+        }
+    </tbody>
+</table>
