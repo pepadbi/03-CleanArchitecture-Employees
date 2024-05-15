@@ -39,6 +39,17 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
   options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("AllowAllOrigins",
+      builder =>
+      {
+        builder.AllowAnyOrigin();
+        builder.AllowAnyMethod();
+        builder.AllowAnyHeader();
+      });
+});
+
 builder.Services.AddFastEndpoints()
                 .SwaggerDocument(o =>
                 {
@@ -65,6 +76,11 @@ else
 }
 
 var app = builder.Build();
+
+app.UseCors("AllowAllOrigins");
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
 {
